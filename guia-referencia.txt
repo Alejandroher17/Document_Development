@@ -1,0 +1,40 @@
+
+
+//Crea una maquina virtual en Windows
+comando: multipass launch -n testvm -c 4 -m 2g -d 6g mantic
+
+//Ver lista de maquina virtual disponible para crear
+Comuando: mltipass find
+
+//Detener maquina virtual
+Comuando: multipass stop nombremv
+
+//Eliminar maquina virtual
+Comuando: multipass delete nombremv
+
+//Ver lista de maquina virtual creadas
+Comuando: mltipass list
+
+//Inicia una Maquina virtual creada
+Comando: multipass shell demodb
+
+//Este comando te instala el docker más nuevo en Ubuntu y luego se actualiza con apt update/apt upgrade si es necesario
+Comando: curl -fsSL https://get.docker.com -o get-docker.sh && sh get-docker.sh && sudo sh get-docker.sh
+
+ //En multipass también puedes hacer
+Comando: multipass launch -n myserver docker
+ y eso crea una vm con ubuntu 22.04 y docker de una vez, pero tarda un poco más y le pone al menos 40gb de disco, en realidad no necesita tanto, yo lo hago a mano y con 16gb esta comodo
+creo mi vm ubuntu con 4gb de RAM y 16gb de disco, luego entro y le corro el comando de arriba y listo
+
+//eso te instala el último postgres
+Comando: sudo docker pull postgres
+
+//eso te corre el container con usuario postgres|basica
+Comando: docker run --restart unless-stopped --name pgsql -e POSTGRES_PASSWORD=basica -d postgres:latest
+
+//eso te corre el container con SqlServer usuario sa|Basica6326266
+sudo docker pull mcr.microsoft.com/mssql/server:2019-latest
+sudo docker run -d --restart unless-stopped --name mssql --network host -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=Basica6326266" mcr.microsoft.com/mssql/server:2019-latest
+A este creo que no le gusta un password corto como basica, no recuerdo, es cuestión de probar
+
+y asi puedes manejar ambos servidores SQL  en una simple VM, y desde tu Windows 11 con Dbeaver te conectas usando el nombre de la vm: server.mshome.net
