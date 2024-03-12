@@ -4,16 +4,16 @@
 comando: multipass launch -n testvm -c 4 -m 2g -d 6g mantic
 
 //Ver lista de maquina virtual disponible para crear
-Comuando: mltipass find
+Comando: mltipass find
 
 //Detener maquina virtual
-Comuando: multipass stop nombremv
+Comando: multipass stop nombremv
 
 //Eliminar maquina virtual
-Comuando: multipass delete nombremv
+Comando: multipass delete nombremv
 
 //Ver lista de maquina virtual creadas
-Comuando: mltipass list
+Comando: mltipass list
 
 //Inicia una Maquina virtual creada
 Comando: multipass shell demodb
